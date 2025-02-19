@@ -6,6 +6,12 @@
       rel="stylesheet"
       href="https://vis-society.github.io/assignments/report.css"
     />
+    <style>
+      figure img {
+        width: 70%; /* Ensure the image fits within the figure */
+        height: auto; /* Maintain aspect ratio */
+      }
+    </style>
   </head>
 
   <body>
@@ -227,8 +233,9 @@
         </p>
         <figure>
           <img
-            src=""
+            src="images/figure8.png"
             alt="Boxplot of household income across zoning categories"
+            style="width: 50%"
           />
           <figcaption>
             Boxplots comparing low-income (&lt; $30k), mid-income, and
@@ -236,7 +243,16 @@
             single-family vs. mixed-use zones.
           </figcaption>
         </figure>
-
+        <p>
+          <strong>Findings:</strong> High-Income Households (Top Panel) Both
+          zoning types show a wide range of high-income household percentages,
+          with some municipalities exceeding 60%. The median percentage of
+          high-income households appears slightly higher in single-family zones
+          (1) compared to mixed-use zones (0). Low-income households are present
+          in both zoning categories. A few municipalities in mixed-use zones (0)
+          have outliers with high percentages of low-income households,
+          suggesting affordable housing clusters in multi-family zones.
+        </p>
         <figure>
           <img
             src="images/figure9.png"
@@ -250,9 +266,7 @@
         <p>
           <strong>Findings:</strong> High-income households appear in both
           zones, but the median high-income percentage is slightly higher in
-          single-family areas. Conversely, certain mixed-use zones display
-          outliers with higher proportions of low-income households—suggesting
-          pockets of affordability where housing options are more varied.
+          single-family areas.
         </p>
         Finially, I compared family vs. non-family households in single-family
         and mixed-use zones to see if zoning patterns influence household
@@ -261,6 +275,7 @@
           <img
             src="images/figure10.png"
             alt="Boxplot of family vs. non-family households"
+            style="width: 50%"
           />
           <figcaption>
             Comparison of family vs. non-family households in single-family and
@@ -269,9 +284,12 @@
           </figcaption>
         </figure>
         <p>
-          Overall, single-family zoning slightly favors higher-income
-          households, while mixed-use zoning fosters a more diverse demographic,
-          including low-income and non-family households.
+          <strong>Findings:</strong> Family households show little variation
+          across zoning types. Non-family households are slightly more prevalent
+          in mixed-use zones: Median (multi-family zones): 13.2%; Median
+          (single-family zones): 12.0% While single-family zoning does not
+          significantly impact family household prevalence, it slightly limits
+          the presence of non-family households (e.g., singles, roommates).
         </p>
 
         <!-- Question 3 -->
@@ -287,7 +305,7 @@
         </p>
         <figure>
           <img
-            src="figure11.png"
+            src="images/figure11.png"
             alt="Regional map highlighting MBTA vs. non-MBTA communities"
           />
           <figcaption>
@@ -297,7 +315,7 @@
         </figure>
         <figure>
           <img
-            src="figure6.png"
+            src="images/figure12.png"
             alt="Bar chart of single-family zoning percentages in MBTA vs. non-MBTA communities"
           />
           <figcaption>
@@ -319,11 +337,15 @@
       <section>
         <h2>Summary</h2>
         <p>
-          Single-family zoning correlates slightly with higher-income household
-          concentrations, whereas mixed-use zoning shows a broader range of
-          socio-economic statuses. Nonetheless, zoning alone cannot explain all
-          patterns of race and income: historical legacies, local housing
-          policies, and larger economic forces also play pivotal roles.
+          Single-family zoning is slightly more associated with high-income
+          households than multi-family zoning. Multi-family or mixed-use zoning
+          has a slightly higher share of low-income households, likely due to a
+          more diverse housing stock, including apartments and rental units.
+        </p>
+        <p>
+          The presence of outliers suggests that zoning alone does not fully
+          determine income distribution—other factors such as housing policies,
+          affordability programs, and geographic location play a role.
         </p>
         <p>
           Although MBTA zoning reforms have had limited impact on reducing
