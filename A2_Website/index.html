@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vis & Society Assignment 2</title>
+    <link
+      rel="stylesheet"
+      href="https://vis-society.github.io/assignments/report.css"
+    />
+    <style>
+      figure img {
+        width: 70%; /* Ensure the image fits within the figure */
+        height: auto; /* Maintain aspect ratio */
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>
+        <small>Assignment 2</small>
+        Exploratory Data Analysis
+      </h1>
+      <p><strong>Mingyang Sun</strong> — <em>msun14@mit.edu</em></p>
+    </header>
+
+    <main>
+      <!-- Subtheme -->
+      <section>
+        <h2>Subtheme: Zoning and Housing Supply</h2>
+      </section>
+
+      <!-- Introduction -->
+      <section>
+        <h3>Introduction</h3>
+        <p>
+          Zoning regulations play a critical role in shaping housing supply and
+          affordability. In Massachusetts, exclusionary zoning practices—such as
+          single-family mandates—have constrained housing production and
+          exacerbated inequities. The Affordable Homes Act (2024) calls for
+          200,000 new housing units by 2030, yet outdated zoning codes remain a
+          significant barrier. This exploratory analysis investigates zoning
+          patterns, compliance discrepancies, and policy impacts across Metro
+          Boston municipalities, leveraging spatial and demographic data. The
+          analysis focuses on three key research questions:
+        </p>
+      </section>
+
+      <!-- Overall Analysis Questions -->
+      <section>
+        <ol>
+          <li>
+            <strong>Exclusionary Zoning &amp; Demographics:</strong> What is the
+            relationship between single-family zoning and demographic factors
+            such as race?
+          </li>
+          <li>
+            <strong
+              >Single-Family Zoning, Household Types, and Income
+              Distribution:</strong
+            >
+            How do household structures and income levels differ between
+            single-family and mixed-use zones?
+          </li>
+          <li>
+            <strong>MBTA Communities &amp; Zoning Patterns:</strong> Do
+            MBTA-designated municipalities exhibit lower single-family zoning
+            percentages and greater housing diversity?
+          </li>
+        </ol>
+      </section>
+
+      <!-- Discoveries & Insights -->
+      <section>
+        <h2>Discoveries &amp; Insights</h2>
+
+        <!-- Data Overview -->
+        <section>
+          <h3>Phase 1: Data Overview</h3>
+          <p>
+            The dataset used—<code>housing_sf_other_w_census</code>—combines
+            information from the MAPC Zoning Atlas with U.S. Census (2010) and
+            American Community Survey (2014–2018) demographic data. It
+            aggregates zoning, household income, and population statistics
+            across municipalities in Metro Boston, including:
+          </p>
+          <ul>
+            <li>
+              <strong>Zoning Information:</strong> %_single_family,
+              only_single_family
+            </li>
+            <li>
+              <strong>Demographics:</strong> pop, nhwhi, male, female, etc.
+            </li>
+            <li><strong>Household Structure:</strong> hh, nfhh1, fhh</li>
+            <li><strong>Income Data:</strong> in200o, i100125, etc.</li>
+          </ul>
+          <p>
+            The first issue is there are two rows for some municipalities in
+            this dataset due to zoning type (only_single_family = 1 or 0). Some
+            municipalities have zero population due to data structure issues. If
+            a municipality has two rows, the dataset splits population and
+            income data by zoning type, requiring aggregation or filtering based
+            on analysis needs.
+          </p>
+
+          <figure>
+            <img
+              src="images/figure1.png"
+              alt="Dark orange municipalities in the dataset"
+            />
+            <figcaption>
+              Municipalities shown in dark orange have two rows in the
+              dataset—one for <em>only_single_family</em> = 1 and one for
+              <em>only_single_family</em> = 0—indicating a mix of zoning types.
+            </figcaption>
+          </figure>
+
+          <p>
+            The second issue is that Population is from 2010 (blocks), while
+            income is from 2014–2018(block groups). As the block groups are more
+            general than zoning, when certain zoning areas are too small, their
+            income values may be lost because they cannot be aggregated. The
+            total households from income data may be different from the
+            households from population data as they come from different years.
+            The third thing worth noticing is that %_single_family aggregates
+            zoning at the municipal level, masking neighborhood-level
+            variations. That means this analysis will focus on the municipal
+            level.
+          </p>
+        </section>
+
+        <h3>Phase 2: Question-Driven Analysis</h3>
+
+        <!-- Question 1 -->
+        <h4>
+          Question 1: What is the relationship between single-family zoning and
+          demographic factors such as race?
+        </h4>
+        <p>
+          This question is directly informed by prior studies suggesting that
+          single-family zoning can exclude low-income and non-white residents. I
+          mapped out the percentage of single-family zoning in each municipality
+          and compared it to the proportion of Non-Hispanic White residents.
+        </p>
+        <figure>
+          <img
+            src="images/figure2.png"
+            alt="Choropleth Map of % Single-Family Zoning"
+          />
+          <figcaption>
+            Choropleth map of single-family zoning percentages across Metro
+            Boston. Darker shades indicate higher concentrations of
+            single-family zoning.
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="images/figure3.png" alt="% Single-Family Zoning" />
+          <figcaption>
+            Percentages of single-family zoning in each municipality.
+          </figcaption>
+        </figure>
+        <p>
+          <strong>Findings:</strong> Municipalities like Bolton, Dover, Duxbury,
+          Hanover, Hopkinton, Nahant, and Wenham each have 100% single-family
+          zoning. Meanwhile, Boston, Somerville, and Cambridge hover at or near
+          0%, reflecting denser urban settings.
+        </p>
+
+        <p>
+          In order to calculate percentage of Non Non-Hispanic White percentage,
+          I first plotted the population distributions. There are several
+          municipalities having 0 population, I excluded them for the rest of
+          analysis under the first question.
+        </p>
+        <figure>
+          <img
+            src="images/figure4.png"
+            alt="Bar chart of population demographics by municipality"
+          />
+          <figcaption>
+            Bar chart of population demographics by municipality
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            src="images/figure5.png"
+            alt="Choropleth Map of % Non-Hispanic White Residents"
+          />
+          <figcaption>
+            Choropleth map illustrating the proportion of Non-Hispanic White
+            residents. Darker shades represent higher NHW percentages.
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            src="images/figure6.png"
+            alt="Scatterplot of % single-family zoning vs. Non-Hispanic White population"
+          />
+          <figcaption>
+            Scatterplot of % single-family zoning versus Non-Hispanic White
+            population. Each point represents a municipality’s aggregated data.
+          </figcaption>
+        </figure>
+        <p>
+          There is no strong correlation overall, but Randolph stands out with
+          97.8% single-family zoning and only 33.26% Non-Hispanic White
+          residents. This suggests other factors—historical migration patterns,
+          housing costs, or local policies—also shape the racial composition in
+          ways not captured by zoning alone.
+        </p>
+
+        <!-- Question 2 -->
+        <h4>
+          Question 2: How do household structures and income levels differ
+          between single-family and mixed-use zones?
+        </h4>
+        <p>
+          Motivated by the idea that exclusionary zoning can perpetuate
+          socio-economic disparities, I compared household incomes and family
+          vs. non-family household structures in single-family
+          (only_single_family = 1) vs. mixed-use (only_single_family = 0) zones.
+        </p>
+        <figure>
+          <img src="images/figure7.png" alt="Bar chart of household income." />
+          <figcaption>
+            Bar chart of household income distribution across municipalities.
+          </figcaption>
+        </figure>
+        <p>
+          I first classify households by income groups: Low-income - households
+          Under $30k; High-income - households Above $200,000 annual incom;
+          Others classified as mid-income households.
+        </p>
+        <figure>
+          <img
+            src="images/figure8.png"
+            alt="Boxplot of household income across zoning categories"
+            style="width: 50%"
+          />
+          <figcaption>
+            Boxplots comparing low-income (&lt; $30k), mid-income, and
+            high-income (&gt; $200k) household distributions across
+            single-family vs. mixed-use zones.
+          </figcaption>
+        </figure>
+        <p>
+          <strong>Findings:</strong> High-Income Households (Top Panel) Both
+          zoning types show a wide range of high-income household percentages,
+          with some municipalities exceeding 60%. The median percentage of
+          high-income households appears slightly higher in single-family zones
+          (1) compared to mixed-use zones (0). Low-income households are present
+          in both zoning categories. A few municipalities in mixed-use zones (0)
+          have outliers with high percentages of low-income households,
+          suggesting affordable housing clusters in multi-family zones.
+        </p>
+        <figure>
+          <img
+            src="images/figure9.png"
+            alt="Choropleth map of income concentration by municipality"
+          />
+          <figcaption>
+            A spatial illustration of where high-income vs. low-income
+            households are most concentrated.
+          </figcaption>
+        </figure>
+        <p>
+          <strong>Findings:</strong> High-income households appear in both
+          zones, but the median high-income percentage is slightly higher in
+          single-family areas.
+        </p>
+        Finially, I compared family vs. non-family households in single-family
+        and mixed-use zones to see if zoning patterns influence household
+        structures.
+        <figure>
+          <img
+            src="images/figure10.png"
+            alt="Boxplot of family vs. non-family households"
+            style="width: 50%"
+          />
+          <figcaption>
+            Comparison of family vs. non-family households in single-family and
+            mixed-use zones. Non-family households (singles, roommates) are
+            somewhat more prevalent in mixed-use areas.
+          </figcaption>
+        </figure>
+        <p>
+          <strong>Findings:</strong> Family households show little variation
+          across zoning types. Non-family households are slightly more prevalent
+          in mixed-use zones: Median (multi-family zones): 13.2%; Median
+          (single-family zones): 12.0% While single-family zoning does not
+          significantly impact family household prevalence, it slightly limits
+          the presence of non-family households (e.g., singles, roommates).
+        </p>
+
+        <!-- Question 3 -->
+        <h4>
+          Question 3: Do MBTA-designated municipalities exhibit lower
+          single-family zoning percentages and greater housing diversity?
+        </h4>
+        <p>
+          The MBTA Communities Act aims to promote transit-oriented development
+          by encouraging diverse housing near transit lines. We compared
+          single-family zoning in MBTA municipalities vs. non-MBTA ones to see
+          if this policy influences broader housing patterns.
+        </p>
+        <figure>
+          <img
+            src="images/figure11.png"
+            alt="Regional map highlighting MBTA vs. non-MBTA communities"
+          />
+          <figcaption>
+            A regional map illustrating which municipalities are designated MBTA
+            communities (blue) versus those that are not (gray).
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            src="images/figure12.png"
+            alt="Bar chart of single-family zoning percentages in MBTA vs. non-MBTA communities"
+          />
+          <figcaption>
+            Bar chart comparing the average % of single-family zoning in MBTA
+            communities vs. other municipalities.
+          </figcaption>
+        </figure>
+        <p>
+          <strong>Findings:</strong> MBTA Communities have about 50%
+          single-family zoning on average, compared to 55% elsewhere. The
+          difference is modest, partly because only four non-MBTA municipalities
+          appear in this dataset. While the MBTA Communities Act may facilitate
+          incremental zoning reforms, it has yet to yield a marked shift away
+          from single-family zoning in many areas.
+        </p>
+      </section>
+
+      <!-- Summary & Recommendations -->
+      <section>
+        <h2>Summary</h2>
+        <p>
+          Single-family zoning is slightly more associated with high-income
+          households than multi-family zoning. Multi-family or mixed-use zoning
+          has a slightly higher share of low-income households, likely due to a
+          more diverse housing stock, including apartments and rental units.
+        </p>
+        <p>
+          The presence of outliers suggests that zoning alone does not fully
+          determine income distribution—other factors such as housing policies,
+          affordability programs, and geographic location play a role.
+        </p>
+        <p>
+          Although MBTA zoning reforms have had limited impact on reducing
+          single-family zoning, they provide a framework for encouraging housing
+          diversity. To promote inclusive and affordable communities,
+          policymakers should expand multi-family zoning in high-income
+          municipalities, strengthen MBTA zoning mandates, and enhance
+          affordable housing incentives to counteract exclusionary zoning
+          practices.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
