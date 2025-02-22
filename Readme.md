@@ -1,2 +1,3 @@
-Assignment 2
-Assignment 3
+# Vis & Society Assignments
+
+This repository contains the assignments for the Vis & Society course.
