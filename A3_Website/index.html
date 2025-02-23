@@ -6,6 +6,12 @@
       rel="stylesheet"
       href="https://vis-society.github.io/assignments/report.css"
     />
+    <style>
+      figure img {
+        width: 100%; /* Ensure the image fits within the figure */
+        height: auto; /* Maintain aspect ratio */
+      }
+    </style>
   </head>
 
   <body>
@@ -15,7 +21,7 @@
         Visualization Critique & Redesign
       </h1>
 
-      <p><strong>Your Name</strong> — <em>Your MIT Email Address</em></p>
+      <p><strong>Mingyang Sun</strong> — <em>msun14@mit.edu</em></p>
     </header>
 
     <main>
@@ -32,60 +38,141 @@
         <p>Insights about the data/visualization:</p>
 
         <ul>
-          <li>INSIGHT 1</li>
-          <li>INSIGHT 2</li>
-          <li>INSIGHT 3</li>
+          <li>
+            New cases’ Peak in Early 2022: The widest section of the red shaded
+            area appears in January 2022, indicating a record-breaking surge in
+            COVID-19 cases.
+          </li>
+          <li>
+            Peaks appear around winter (January–February) in both 2021 and 2022,
+            aligning with seasonal surges.
+          </li>
+          <li>
+            General increasing patterns over years: each successive year shows
+            an increase in peak case numbers, with 2022 being the highest,
+            followed by 2021, and 2020 having the smallest peaks.
+          </li>
         </ul>
 
         <p>Design Critique:</p>
 
         <ul>
-          <li>CRITIQUE 1</li>
-          <li>CRITIQUE 2</li>
-          <li>CRITIQUE 3</li>
+          <li>
+            The spiral timeline is a visually striking but unconventional way to
+            present COVID-19 case trends. The red shaded area effectively
+            highlights the 7-day average, showing fluctuations in daily case
+            numbers. However, the format makes it difficult to compare exact
+            case counts across different years, as there is no numerical scale
+            to provide precise values.
+          </li>
+          <li>
+            Another drawback is the difficulty in tracking seasonal trends and
+            daily fluctuations. The spiral layout forces readers to follow time
+            in a circular pattern, which may not be intuitive, especially for
+            those unfamiliar with this format.
+          </li>
+          <li>
+            Additionally, the design gives the impression that case numbers
+            exploded in early 2022, but it is hard to directly compare this with
+            the peaks from January to February 2021. If the spiral continues
+            expanding, future peaks might either overlap or create too much
+            empty space, making it tricky to balance clarity and spacing. The
+            choice of the spiral’s radius is therefore crucial in maintaining
+            readability while ensuring an accurate representation of trends.
+          </li>
         </ul>
       </section>
 
       <section>
         <h2>Visualization Sketches</h2>
 
+        <p>
+          Below are three sketches of potential redesigns for the COVID-19 case
+          visualization. I really like the circular layout of the original
+          visualization, as it is visually engaging and unique. However, I
+          believe that the design can be improved to better convey the data
+          trends and make it easier for readers to interpret the information.
+        </p>
+
         <figure>
-          <img src="IMAGE_FILENAME" alt="" />
-          <figcaption>BRIEF CAPTION HERE.</figcaption>
+          <img
+            src="/A3_Website/images/A3_1.png"
+            alt="Radial Stacked Histogram"
+          />
+          <figcaption>
+            Radial Stacked Histogram: A hybrid design combining stacked bar
+            graphs with a circular layout to compare cases across years.
+          </figcaption>
         </figure>
 
         <p>Design Rationale for Sketch 1:</p>
 
         <ul>
-          <li>RATIONALE 1</li>
-          <li>RATIONALE 2</li>
-          <li>RATIONALE 3</li>
+          <li>
+            Maintains a radial structure for continuity while improving
+            visibility of case differences between years.
+          </li>
+          <li>
+            Stacked bars allow for direct comparison of case counts across
+            different years, with each segment representing a specific year
+            color-coded.
+          </li>
+          <li>It shows a better seasonal trend than the original graphs.</li>
         </ul>
 
         <figure>
-          <img src="IMAGE_FILENAME" alt="" />
-          <figcaption>BRIEF CAPTION HERE.</figcaption>
+          <img
+            src="/A3_Website/images/A3_2.png"
+            alt="Circular Heatmap Visualization"
+          />
+          <figcaption>
+            Circular Heatmap: A radial representation of weekly new COVID-19
+            cases across 2020-2022, color-coded by year.
+          </figcaption>
         </figure>
 
         <p>Design Rationale for Sketch 2:</p>
 
         <ul>
-          <li>RATIONALE 1</li>
-          <li>RATIONALE 2</li>
-          <li>RATIONALE 3</li>
+          <li>
+            I change to a logarithmic scale to better show the distribution of
+            cases. The relavant location to the core of the circle is the
+            logarithm of the case number.
+          </li>
+          <li>
+            Color-coding different years allows for easy comparison of case
+            patterns across 2020, 2021, and 2022.
+          </li>
+          <li>
+            This is one of the most efficient design to show the seasonal and
+            yearly trend of new cases. However, it simplifies the actual case
+            numbers in this presentation.
+          </li>
         </ul>
 
         <figure>
-          <img src="IMAGE_FILENAME" alt="" />
-          <figcaption>BRIEF CAPTION HERE.</figcaption>
+          <img src="/A3_Website/images/A3_3.png" alt="Radial Line Graph" />
+          <figcaption>
+            Radial Line Graph: A smoothed line-based approach to illustrate
+            trends in COVID-19 cases.
+          </figcaption>
         </figure>
 
         <p>Design Rationale for Sketch 3:</p>
 
         <ul>
-          <li>RATIONALE 1</li>
-          <li>RATIONALE 2</li>
-          <li>RATIONALE 3</li>
+          <li>
+            Uses a continuous line graph to show fluctuations in COVID-19 cases,
+            making trends over time more readable.
+          </li>
+          <li>
+            This line graph allows for better comparison between years by
+            aligning on a same radial axis.
+          </li>
+          <li>
+            Lines are more intuitive than heatmap or bar in terms of compare the
+            magnitude of outbreaks across years.
+          </li>
         </ul>
       </section>
 
@@ -93,19 +180,80 @@
         <h2>Final Visualization Design</h2>
 
         <figure>
-          <img src="IMAGE_FILENAME" alt="" />
-          <figcaption>BRIEF CAPTION HERE.</figcaption>
+          <img
+            src="/A3_Website/images/circular_stacked_donut_final.png"
+            alt="Circulat Stacked Barplot of new COVID cases,
+United States,
+2020-2022"
+          />
+          <figcaption>
+            Circulat Stacked Barplot of new COVID cases, United States,
+            2020-2022
+          </figcaption>
         </figure>
       </section>
 
       <section>
         <h2>Design Process & Design Decisions</h2>
 
-        <p>DESCRIBE YOUR DESIGN PROCESS AND DECISION DECISIONS HERE.</p>
+        <p>
+          In redesigning the COVID-19 case visualization, I aimed to retain the
+          engaging radial format while improving interpretability and clarity.
+          The primary issue with the original spiral design was its difficulty
+          in comparing data across years, as the case counts were not explicitly
+          labeled and seasonal trends were hard to discern. To address these
+          concerns, I chose a circular stacked barplot as the final design,
+          which maintains the visual appeal of the radial format but enhances
+          readability. The stacked bars allow for direct year-over-year
+          comparison, making it easier to see how case numbers evolved over
+          time. I also ensured that the spacing and scaling of the bars were
+          carefully adjusted to avoid excessive overlap while still maintaining
+          a compact layout. The circular layout preserves the seasonal
+          storytelling aspect of the data while providing a clearer view of how
+          case trends shift annually.
+        </p>
+
+        <p>
+          In terms of visual encodings, I used color to differentiate years,
+          ensuring that each period is distinguishable while maintaining visual
+          continuity. The bar lengths represent case counts, scaled
+          appropriately to emphasize peaks and seasonal trends without
+          overwhelming the viewer with excessive detail. A logarithmic
+          transformation was considered but ultimately not used, as the focus
+          was on absolute case magnitude rather than proportional change.
+          Compared to the original spiral, the circular stacked barplot allows
+          for better quantitative comparisons while preserving the engaging
+          structure.
+        </p>
 
         <h3>Reflection</h3>
 
-        <p>WRITE YOUR FINAL REFLECTION HERE.</p>
+        <p>
+          The final visualization aims to effectively communicate the seasonal
+          patterns and year-over-year differences in COVID-19 cases in the U.S.
+          from 2020 to 2022. By using a circular stacked barplot, I sought to
+          emphasize the recurring winter peaks while providing a more structured
+          comparison of different years. The stacked format enables direct
+          year-over-year analysis, making it easier to identify trends like the
+          increasing peak case counts over time. This design maintains the
+          engaging radial structure of the original but enhances readability,
+          ensuring that both the seasonal fluctuations and long-term growth of
+          cases remain evident. The choice of a categorical color scheme for
+          different years aids in distinguishing trends while ensuring that each
+          year’s data remains visually coherent.
+        </p>
+
+        <p>
+          Reflecting on the redesign process, I found that the critique phase
+          helped uncover key trade-offs in visualization design. While my final
+          design improves comparability and numerical clarity, it does sacrifice
+          some of the fluidity of the spiral format, which effectively conveyed
+          the cyclical nature of outbreaks. Additionally, while my visualization
+          provides a clearer structure, fine-grained day-to-day variations are
+          less prominent than in a line-based graph. This iterative process
+          reinforced the balance between aesthetics and data precision—an
+          ongoing challenge in designing effective visualizations.
+        </p>
       </section>
     </main>
   </body>
